@@ -1,6 +1,10 @@
+require("dotenv").config();
+
 const express = require("express");
 
 const app = express();
+
+const PORT = process.env.PORT;
 
 const homeRoute = require("./routes/index");
 
@@ -14,9 +18,12 @@ app.use("/", homeRoute);
 
 
 
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.json({ error: err.message })
+})
 
 
-
-app.listen(8000, () => {
-  console.log("App is listening on http://localhost:8000")
+app.listen(PORT, () => {
+  console.log(`App is listening on http://localhost:${PORT}`);
 });
