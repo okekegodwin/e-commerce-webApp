@@ -6,10 +6,8 @@ const homeRoute = require("./routes/index");
 
 
 
-
+// my app routes
 app.use("/", homeRoute);
-
-
 
 
 
